@@ -5,6 +5,10 @@ html, body {
 	text-align: center;
 }
 
+body {
+	position: relative;
+}
+
 /* --- Puzzle --- */
 
 #puzzle {
@@ -35,6 +39,16 @@ html, body {
 	box-sizing: border-box;
 	background-size: cover;
 	background-position: center;
+}
+
+#tooltip {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 500;
+	background-size: cover;
+	background-position: center;
+	border: 1px solid lightgrey;
 }
 
 /* --- Menu --- */

@@ -15,10 +15,14 @@
 <div id="puzzle" ng-class="{wide: wide === true}" puzzle-sizing>
 	<div id="puzzle-inner">
 		<div class="row" ng-repeat="row in rows">
-			<div class="square" ng-repeat="block in row.blocks" style="width:{{squareSize}}px; height:{{squareSize}}px; line-height:{{squareSize}}px; font-size:{{fontSize}}px; background-image: url({{block.img}})";>{{block.letter}}</div>
+			<div class="square" ng-repeat="block in row.blocks" style="width:{{squareSize}}px; height:{{squareSize}}px; line-height:{{squareSize}}px; font-size:{{fontSize}}px; background-image: url({{block.img}});" ng-mouseover="showTooltip(block.img, $event)" ng-mouseleave="hideTooltip()">
+				{{block.letter}}
+			</div>
 		</div>
 	</div>
 </div>
+
+<div id="tooltip" style="width:{{squareSize * tooltipMagnification }}px; height:{{squareSize * tooltipMagnification }}px; background-image: url({{tooltipImg}});" tooltip></div>
 
 <script src="js/jquery-2.2.0.min.js"></script>
 <script src="js/angular.min.js"></script>
