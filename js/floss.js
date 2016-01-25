@@ -65,15 +65,13 @@
       link: function (scope, elem, attrs) {
         $timeout(function () {
           var $tooltip = elem,
-              $currentSquare,
-              currentSquareOffset;
+              tooltipLeft,
+              tooltipTop,
+              initialPosition = scope.squareSize * scope.tooltipMagnification + scope.squareSize * .2,
+              $puzzleInner = $('#puzzle-inner');
 
-          scope.showTooltip = function(img, $event) {
+          scope.showTooltip = function(img) {
             scope.tooltipImg = img;
-
-            $currentSquare = $($event.target);
-
-            setTooltipPosition();
 
             $tooltip.show();
           };
@@ -82,21 +80,22 @@
             $tooltip.hide();
           };
 
-          function setTooltipPosition() {
-            currentSquareOffset = $currentSquare.offset();
 
-            if (currentSquareOffset.left - (scope.squareSize * scope.tooltipMagnification + scope.squareSize * .2) > 0) {
-              $tooltip.css('left', currentSquareOffset.left - (scope.squareSize * scope.tooltipMagnification + scope.squareSize * .2));
+          $puzzleInner.mousemove(function(event) {
+            if (event.pageX - initialPosition > 0) {
+              tooltipLeft = event.pageX - initialPosition;
             } else {
-              $tooltip.css('left', currentSquareOffset.left + (scope.squareSize * 1.2));
+              tooltipLeft =  event.pageX + (scope.squareSize * .2);
             }
 
-            if (currentSquareOffset.top - (scope.squareSize * scope.tooltipMagnification + scope.squareSize * .2) > 0) {
-              $tooltip.css('top', currentSquareOffset.top - (scope.squareSize * scope.tooltipMagnification + scope.squareSize * .2));
+            if (event.pageY - initialPosition > 0) {
+              tooltipTop = event.pageY - initialPosition;
             } else {
-              $tooltip.css('top', currentSquareOffset.top + (scope.squareSize * 1.2));
+              tooltipTop = event.pageY + (scope.squareSize * .2);
             }
-          }
+
+            $tooltip.css({top: tooltipTop, left: tooltipLeft});
+          });
         }, 1);
       }
     };
