@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html ng-app="floss">
 <head>
-	<title></title>
-	<link rel="stylesheet" type="text/css" href="css/reset.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="css/reset.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body ng-controller="FlossController as floss">
 
 <div id="menu" ng-class="{wide: wide === true}">
-	<h1>Flosswords</h1>
+  <h1>Flosswords</h1>
 </div>
 
 <div id="puzzle" ng-class="{wide: wide === true}" puzzle-sizing>
-	<div id="puzzle-inner">
-		<div class="row" ng-repeat="row in rows">
-			<div class="square" ng-repeat="block in row.blocks" style="width:{{squareSize}}px; height:{{squareSize}}px; line-height:{{squareSize}}px; font-size:{{fontSize}}px; background-image: url({{block.img}});" ng-mouseover="showTooltip(block.img, $event)" ng-mouseleave="hideTooltip()">
-				{{block.letter}}
-			</div>
-		</div>
-	</div>
+  <div id="puzzle-inner">
+    <div class="row" ng-repeat="row in rows">
+      <div class="square" ng-repeat="block in row.blocks" style="width:{{squareSize}}px; height:{{squareSize}}px; line-height:{{squareSize}}px; font-size:{{fontSize}}px; background-image: url({{block.img}});" ng-mouseover="showTooltip(block.img, $event)" ng-mouseleave="hideTooltip()">
+        {{block.letter}}
+      </div>
+    </div>
+  </div>
 </div>
 
 <div id="tooltip" style="width:{{squareSize * tooltipMagnification }}px; height:{{squareSize * tooltipMagnification }}px; background-image: url({{tooltipImg}});" tooltip></div>
